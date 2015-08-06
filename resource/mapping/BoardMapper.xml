@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="BoardMapper">
+
+ 	<resultMap id="boardSelectMap" type="BoardVo">
+		<result property="id" 		column="id" 	jdbcType="VARCHAR"/>
+		<result property="name"	column="name" 		jdbcType="VARCHAR" />
+		<result property="password" column="password" jdbcType="NUMERIC"/>
+		<result property="addr" column="addr" jdbcType="VARCHAR"/>
+	</resultMap>
+	
+	
+	
+	<insert 	id="insert"		parameterType="BoardVo" >
+	<![CDATA[
+		insert
+		  into users
+		values ( #{id}, #{name}, #{password}, #{address})
+		]]>  
+	</insert>
+	
+	<select 	id="list"	parameterType="BoardVo"	resultMap="boardSelectMap">
+		<![CDATA[
+		select *
+		  from users
+		]]> 
+	 </select>
+	 
+	 
+	 <delete id="delete" parameterType="BoardVo">
+		<![CDATA[
+			delete from users where id=#{id}
+		]]>	 
+	 </delete>
+
+</mapper>
